@@ -2,6 +2,7 @@ baseURL = 'https://example.org/'
 languageCode = 'en-us'
 title = 'Hank Snowdon'
 theme = 'smol'
+enableEmoji = 'true'
 
 
 # Parameters
