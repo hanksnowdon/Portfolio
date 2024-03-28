@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<style type=text/css>body{font-family:monospace;}</style>
+	<title>Fantasy Baseball Roto Draft Optimization</title>
+	
+	
+	<link rel="stylesheet" href="/css/style.css">
+	
+	
+</head>
+<body>
+	<header>
+	==================<br>
+	== <a href="https://example.org/">Hank Snowdon</a> ==<br>
+	==================
+	<div style="float: right;">A home for my explorations into transportation/sports!</div><br>
+	<p>
+	<nav>
+			<a href="/"><b>Start</b></a>.
+			
+			
+			<a href="/posts/"><b>Posts</b></a>.
+			
+			<a href="/categories/"><b>Categories</b></a>.
+			
+	</nav>
+	</p>
+	
+</header>
+
+	
+	<main>
+		<article>
+			<h1>Fantasy Baseball Roto Draft Optimization</h1>
+			<b><time>19.03.2024 16:48</time></b>
+		       
+		           <a href="/tags/sports">Sports</a>
+        	       
+		           <a href="/tags/fantasy-baseball">Fantasy Baseball</a>
+        	       
+
+			<div>
+				<h2 id="introduction">Introduction</h2>
+<p>I recently joined a Gladiator-Style (draft and hold) rotisserie fantasy baseball league hosted by the smart people at The Athletic&rsquo;s Rates &amp; Barrels podcast. After a quick glance at the rules, I immediately knew I wanted to employ an optimization algorithm to choose my team.</p>
+<p>The league rules are as follows:</p>
+<ul>
+<li>Each team sets their roster before the season starts, and cannot change it again.</li>
+<li>Any player can be chosen, provided that you stay under the &ldquo;$280&rdquo; budget (Fantrax, where the league is hosted, assigns an auction value to every player. Ronald Acuna Jr. costs $56, for example).</li>
+<li>Teams must roster 2 C, 1 1B, 1 2B, 1 3B, 1 SS, 2 CI, 2 MI, 6 OF, 2 UT, and 13 P.</li>
+<li>Scoring is 5x5 roto: HR, RBI, R, SB, AVG, IP, SV, K, ERA, WHIP</li>
+</ul>
+<p>Since I can choose whoever I want for my roster and don&rsquo;t have to contend with other team&rsquo;s selecting players in a draft setting, this is a prime opportunity for an optimization algorithm.</p>
+<h2 id="determining-an-approach-to-pick-an-optimal-team">Determining an Approach to Pick an Optimal Team</h2>
+<p>The most common approach to drafting in roto leagues is to build a balanced team with high Z-scores across all scoring categories, and that&rsquo;s the angle I&rsquo;m taking when constructing this roster. I won&rsquo;t go into length regarding exactly how this works mathematically, but the general idea is to field a roster of players who are maximally above-average in aggregate across all categories. This Fangraphs article is a great jumping off point into the world of auction-valuing players for FBB: (<a href="https://fantasy.fangraphs.com/using-the-auction-calculator-in-2022-a-beginners-guide/">https://fantasy.fangraphs.com/using-the-auction-calculator-in-2022-a-beginners-guide/</a>).</p>
+<p>To calculate the Z-scores for each player in each category I use the (discussed in the article above) Fangraphs Auction Calculator. This great tool uses 2024 Steamer projections to generate the Z-scores I need, and is exportable via CSV. After a little Excel magic to merge in the player prices from Fantrax and to add Utility to each hitters position, CI to 1B and 3Bs, and MI to 2B and SSs, I have a ready-to-use dataset:</p>
+<p>
+<figure>
+  <img src="data.png" alt="alt" />
+</figure>
+
+
+</p>
+<h2 id="structuring-the-optimization-problem">Structuring the Optimization Problem</h2>
+<p>With the data wrangled, it&rsquo;s time to set up the optimization problem. I use Julia to code up the problem and solve via the GLPK solver.</p>
+<h3 id="specifying-model-variables">Specifying Model Variables</h3>
+<p>The first step is to specify the decision variables. In the case of this problem, there will be n (number of players) * m (number of positions) binary variables, each corresponding to whether a player is selected for my roster at a specific position.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Create position dictionary</span>
+</span></span><span style="display:flex;"><span>position_requirements <span style="color:#f92672">=</span> <span style="color:#66d9ef">Dict</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;C&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;1B&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;2B&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;3B&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;SS&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;CI&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;MI&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;OF&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">6</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;UT&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">2</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;P&#34;</span> <span style="color:#f92672">=&gt;</span> <span style="color:#ae81ff">13</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Specify decision variables</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@variable</span>(model, x[<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players), <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(position_requirements)], Bin)
+</span></span></code></pre></div><h3 id="constraints-for-player-selection">Constraints for Player Selection</h3>
+<p>The first constraint is the available budget to spend: $280.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span>budget <span style="color:#f92672">=</span> <span style="color:#ae81ff">280</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Constraint: budget constraint</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@constraint</span>(model, sum(x[i, j] <span style="color:#f92672">*</span> players[i]<span style="color:#f92672">.</span>price <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players), j <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(position_requirements)) <span style="color:#f92672">&lt;=</span> budget)
+</span></span></code></pre></div><p>There must also be a set number of players per position:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Constraint: positional requirements</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (j, (position, requirement)) <span style="color:#66d9ef">in</span> enumerate(position_requirements)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@constraint</span>(model, sum(x[i, j] <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players)) <span style="color:#f92672">==</span> requirement)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>Players must only be allowed to occupy positions they are eligible for:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Constraint: player positional eligibility </span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (j, (position, _)) <span style="color:#66d9ef">in</span> enumerate(position_requirements)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> position <span style="color:#66d9ef">in</span> players[i]<span style="color:#f92672">.</span>positions
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@constraint</span>(model, x[i, j] <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">@constraint</span>(model, x[i, j] <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">end</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><p>Finally, each player can only be selected once:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Constraint: each player can only be selected once</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@constraint</span>(model, sum(x[i, j] <span style="color:#66d9ef">for</span> j <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(position_requirements)) <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">end</span>
+</span></span></code></pre></div><h3 id="defining-the-objective-function">Defining the Objective Function</h3>
+<p>The objective function I use here is simple: maximize total Z-score across all ten categories. This obviously potentially contradicts my goal of the project: to create the best and <strong>most balanced</strong> roster possible. In a league like this I want to pick a team which won&rsquo;t kill me in any one category, and can be very strong in as many as possible. But instead of building this into the objective function, I will instead take the easier approach of tweaking the constraints later to prevent any one category from being too strong or weak.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-julia" data-lang="julia"><span style="display:flex;"><span><span style="color:#75715e"># Objective function: maximize sum of Z scores</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@objective</span>(model, Max, 
+</span></span><span style="display:flex;"><span>    sum(x[i, j] <span style="color:#f92672">*</span> (players[i]<span style="color:#f92672">.</span>AVG <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>RBI <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>R <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>SB <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>HR <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>SV <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>ERA <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>WHIP <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>SO <span style="color:#f92672">+</span> players[i]<span style="color:#f92672">.</span>IP) 
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> i <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(players), j <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>length(position_requirements))
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="results----tweaking-constraints-to-pick-the-best-team">Results &ndash; Tweaking Constraints to Pick the Best Team</h2>
+<p>Running the optimization problem yields the following initial roster:</p>
+<p>
+<figure>
+  <img src="p1.png" alt="alt" />
+</figure>
+
+
+
+
+<figure>
+  <img src="h1.png" alt="alt" />
+</figure>
+
+
+</p>
+<p>A few observations:</p>
+<ul>
+<li>The model only selects two players who are projected to accrue any saves: Mason Miller and Trevor Megill. I&rsquo;ll need to constrain the results ensure more closers are selected, as I don&rsquo;t think these two players will be enough to rank well in the saves category.</li>
+<li>This roster seriously hunts batting average, likely to a fault. While the sums of Z scores aren&rsquo;t directly comparable across categories (for a variety of reasons), I want to generally avoid any one category from being way stronger or weaker than another. While overall &ldquo;sum of Z scores&rdquo; will decrease, my team&rsquo;s final rank will be more likely to be better if I try to spread the wealth across categories.</li>
+</ul>
+<p>With this in mind, I&rsquo;ll first constrain AVG Z-score to have an upper limit of 15:</p>
+<p>
+<figure>
+  <img src="p2.png" alt="alt" />
+</figure>
+
+
+
+
+<figure>
+  <img src="h2.png" alt="alt" />
+</figure>
+
+
+</p>
+<p>This roster seems slightly more balanced and the total sum of Z scores decreased by less than 2, but the pitching still seems too weak. Half the scoring categories are won by pitchers, and I need to make that group stronger.</p>
+<p>I&rsquo;ll start by supplying a lower limit for SV Z-score of -2:</p>
+<p>
+<figure>
+  <img src="p3.png" alt="alt" />
+</figure>
+
+
+
+
+<figure>
+  <img src="h3.png" alt="alt" />
+</figure>
+
+
+</p>
+<ul>
+<li>The model responds to this new constraint by adding vaunted closer Pete Fairbanks and setup man Caleb Ferguson.</li>
+<li>While Fairbanks is a good add, I don&rsquo;t actually want any setup men on my roster. One problem with the Z-score method is that it cannot distinguish between low-ERA players who throw lots of innings (good starters) or fewer innings (good relievers). Ferguson, while having a good ERA, doesn&rsquo;t actually give me much because he won&rsquo;t throw enough innings for it to matter.</li>
+</ul>
+<p>To address this, I&rsquo;ll now choose to overemphasize IP in my model, setting a lower bound of IP Z-score of 9:</p>
+<p>
+<figure>
+  <img src="p4.png" alt="alt" />
+</figure>
+
+
+
+
+<figure>
+  <img src="h4.png" alt="alt" />
+</figure>
+
+
+</p>
+<ul>
+<li>This roster takes another slight hit in total Z-score: I started over 90 and am now down to 83.8.</li>
+<li>That being said, the roster is looking much more balanced. The team has a steady supply of saves, performs well across pitching categories, and shines in every hitting category but stolen bases.</li>
+</ul>
+<p>I&rsquo;ll make one more tweak &ndash; setting a lower limit for ERA Z-score of 4, up from the current 3.44, just to make my pitchers a bit stronger comparatively:</p>
+<p>
+<figure>
+  <img src="p5.png" alt="alt" />
+</figure>
+
+
+
+
+<figure>
+  <img src="h5.png" alt="alt" />
+</figure>
+
+
+</p>
+<p>This team looks great. It&rsquo;s balanced and strong in almost every category &ndash; I&rsquo;m not too worried about stolen bases or steals, as these categories are notoriously difficult to acquire in roto leagues, and my opponents will be facing a similar challenge.</p>
+<h2 id="concluding-thoughts">Concluding Thoughts</h2>
+<p>All things considered, I&rsquo;m very pleased with the results of this exercise! The integer programming optimization model is able to find an optimal collection of undervalued players, and with only a little bit of tweaking through artificial constraints, I&rsquo;m able to create a team that also passes the eye test.</p>
+<p>Regardinging future improvements, I would love to incorporate injury probabilities into the selection algorithm. Success in this league will likely be overwhelmingly determined by which teams stay the healthiest, and there&rsquo;s no doubt that my final roster is somewhat injury-prone (Carlos Rodon, Chris Sale, Alex Cobb, etc.). Adding a constraint for minimum average injury score or building injury history into the objective function are defintiely things I will consider if I return to improve this model in years to come.</p>
+<p>For now, though, the only thing left to do is play! I&rsquo;ll post again at the end of the season to update on how the team performs.</p>
+<p>(Full code for this project can be found <a href="https://github.com/hanksnowdon/PortfolioSite/blob/master/full_code_notebooks/RotoDraftOptimization.ipynb">here</a>.)</p>
+
+			</div>
+		</article>
+	</main>
+<aside>
+	<div>
+		<div>
+			<h3>LATEST POSTS</h3>
+		</div>
+		<div>
+			<ul>
+				
+				<li><a href="/posts/roto-optimization/">Fantasy Baseball Roto Draft Optimization</a></li>
+				
+			</ul>
+		</div>
+	</div>
+</aside>
+
+
+	<footer>
+	<p>&copy; 2024 <a href="https://example.org/"><b>Hank Snowdon</b></a>.
+	<a href="https://github.com/hanksnowdon"><b>Github</b></a>.
+	<a href="https://twitter.com/hsnowdon5"><b>Twitter</b></a>.
+	</p>
+</footer>
+
+</body>
+</html>

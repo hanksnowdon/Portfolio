@@ -1,0 +1,37 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'Hank Snowdon'
+theme = 'smol'
+
+
+# Parameters
+[params]
+    subtitle = "A home for my explorations into transportation/sports!"
+    dateFmt = "02.01.2006 15:04"
+
+# Header
+[menu]
+  [[menu.main]]
+        identifier = "posts"
+        name = "Posts"
+        url = "/posts/"
+        weight = 1 
+
+  [[menu.main]]
+        identifier = "categories"
+        name = "Categories"
+        url = "/categories/"
+        weight = 2 
+
+# Footer
+  [[menu.footer]]
+        name = "Github"
+        url = "https://github.com/hanksnowdon"
+        weight = 1 
+
+    [[menu.footer]]
+        name = "Twitter"
+        url = "https://twitter.com/hsnowdon5"
+        weight = 2 
+
+
