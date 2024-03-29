@@ -22,5 +22,12 @@
       <guid>https://example.org/tags/sports/</guid>
       <description></description>
     </item>
+    <item>
+      <title>Baseball</title>
+      <link>https://example.org/tags/baseball/</link>
+      <pubDate>Mon, 18 Mar 2024 16:48:05 -0500</pubDate>
+      <guid>https://example.org/tags/baseball/</guid>
+      <description></description>
+    </item>
   </channel>
 </rss>

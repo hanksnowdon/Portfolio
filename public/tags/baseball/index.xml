@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Baseball on Hank Snowdon</title>
+    <link>https://example.org/tags/baseball/</link>
+    <description>Recent content in Baseball on Hank Snowdon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Mar 2024 16:48:05 -0500</lastBuildDate>
+    <atom:link href="https://example.org/tags/baseball/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Umpire Discrimination Research</title>
+      <link>https://example.org/posts/umpire-discrimination-thesis/</link>
+      <pubDate>Mon, 18 Mar 2024 16:48:05 -0500</pubDate>
+      <guid>https://example.org/posts/umpire-discrimination-thesis/</guid>
+      <description>Award-winning senior undergraduate thesis on umpire discrimination.</description>
+    </item>
+  </channel>
+</rss>

@@ -25,5 +25,11 @@
   </url><url>
     <loc>https://example.org/tags/</loc>
     <lastmod>2024-03-19T16:48:05-05:00</lastmod>
+  </url><url>
+    <loc>https://example.org/tags/baseball/</loc>
+    <lastmod>2024-03-18T16:48:05-05:00</lastmod>
+  </url><url>
+    <loc>https://example.org/posts/umpire-discrimination-thesis/</loc>
+    <lastmod>2024-03-18T16:48:05-05:00</lastmod>
   </url>
 </urlset>
