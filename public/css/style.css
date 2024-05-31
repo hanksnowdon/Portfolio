@@ -10,3 +10,23 @@ article{padding:24px 0}
 figcaption {color: #888; font: 12px/1.5 monospace; text-align: center;}
 figure {margin: auto}
 img {display: block; max-width: 100%; height: auto; margin: auto}
+
+
+.bio-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.bio-text {
+    flex: 1;
+}
+
+.bio-image {
+    flex: 0 0 auto;
+    margin-left: 20px;
+}
+
+.bio-image img {
+    max-width: 200px; /* Adjust the size as needed */ 
+}

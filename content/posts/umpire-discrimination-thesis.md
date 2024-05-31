@@ -1,5 +1,5 @@
 +++
-title = 'Umpire Discrimination Research'
+title = 'MLB Umpire Discrimination Research'
 date = 2024-03-18T16:48:05-05:00 
 draft = false
 summary = 'Award-winning senior undergraduate thesis on umpire discrimination.'

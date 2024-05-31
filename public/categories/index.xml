@@ -6,8 +6,22 @@
     <description>Recent content in Categories on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Mar 2024 16:48:05 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2024 19:25:51 -0500</lastBuildDate>
     <atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Transit</title>
+      <link>https://example.org/categories/transit/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/categories/transit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transportation</title>
+      <link>https://example.org/categories/transportation/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/categories/transportation/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Sports</title>
       <link>https://example.org/categories/sports/</link>

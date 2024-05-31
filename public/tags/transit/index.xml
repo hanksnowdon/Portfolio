@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Transit on Hank Snowdon</title>
+    <link>https://example.org/tags/transit/</link>
+    <description>Recent content in Transit on Hank Snowdon</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 30 May 2024 19:25:51 -0500</lastBuildDate>
+    <atom:link href="https://example.org/tags/transit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Measuring the Impact of Rapid Transit Station Loss on Chicago&#39;s South Side</title>
+      <link>https://example.org/posts/chi_ss_transit/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/posts/chi_ss_transit/</guid>
+      <description>Spatial data science project on the history of public transit in Chicago.</description>
+    </item>
+  </channel>
+</rss>

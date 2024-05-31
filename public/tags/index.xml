@@ -6,8 +6,29 @@
     <description>Recent content in Tags on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 19 Mar 2024 16:48:05 -0500</lastBuildDate>
+    <lastBuildDate>Thu, 30 May 2024 19:25:51 -0500</lastBuildDate>
     <atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Chicago</title>
+      <link>https://example.org/tags/chicago/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/tags/chicago/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>GIS</title>
+      <link>https://example.org/tags/gis/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/tags/gis/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Transit</title>
+      <link>https://example.org/tags/transit/</link>
+      <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
+      <guid>https://example.org/tags/transit/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Fantasy Baseball</title>
       <link>https://example.org/tags/fantasy-baseball/</link>
