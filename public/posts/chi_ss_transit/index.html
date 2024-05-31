@@ -46,7 +46,13 @@
         	       
 
 			<div>
-				<p>For the UChicago Spring 2024 GIS Practicum Course I undertook the following research project on the loss of rapid transit access on Chicago&rsquo;s South Side. The course required we analyze an aspect of the 1950s Urban Renewal movement in Chicago, and I decided to research how changes to public transit infrastructure in that era impacted the South Side. What follows is a (slightly) abbrieviated version of that research project. Full code for the analytical methods described is available <a href="https://github.com/hanksnowdon/TransitAccessResearch-SouthSideChicago">here</a>.</p>
+				<figure><img src="/posts/chi_ss_transit/18th02t.jpeg"
+    alt=" "><figcaption>
+      <p>The 18th Street station of the South Side Elevated, closed August 1, 1949. Courtesy: <a href="https://www.Chicago-L.org">www.Chicago-L.org</a></p>
+    </figcaption>
+</figure>
+
+<p>For the UChicago Spring 2024 GIS Practicum Course I undertook the following research project on the loss of rapid transit access on Chicago&rsquo;s South Side. The course required we analyze an aspect of the 1950s Urban Renewal movement in Chicago, and I decided to research how changes to public transit infrastructure in that era impacted the South Side. What follows is a (slightly) abbrieviated version of that research project. Full code for the analytical methods described is available <a href="https://github.com/hanksnowdon/TransitAccessResearch-SouthSideChicago">here</a>.</p>
 <h1 id="introduction">Introduction</h1>
 <p>One of the regions that has experienced the most turmoil, growth, and
 subsequent decay in Chicago’s near 200-year history is the city’s South
@@ -161,13 +167,12 @@ region of economic success to one of the most economically challenged
 areas of the city, with poverty rates skyrocketing in the second half of
 the 20th century.[13] The population has also declined sharply between
 1940 and 2020, as seen in the map of population change by block below:</p>
-<p>
-<figure>
-  <img src="PopulationChange.jpeg" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/PopulationChange.jpeg"
+    alt=" " width="400px"><figcaption>
+      <p>Figure 1- Changes in population between 1940 and 2020, Chicago’s South Side</p>
+    </figcaption>
 </figure>
 
-
-</p>
 <p>Within the same period access to rapid transit has decreased sharply in
 the South Side. The Urban Renewal-era branch and station closures were
 the start of a half-century period where CTA slowly cut back the
@@ -301,27 +306,24 @@ population within quick walking distance of the L declined sharply:</p>
 </tbody>
 </table>
 <p>These changes are visualized below:</p>
-<p>
-<figure>
-  <img src="output2.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/output2.png"
+    alt=" " width="500px"><figcaption>
+      <p>Figure 2- Census Blocks within a 10-minute walk of rapid transit, colored by 1940 population</p>
+    </figcaption>
 </figure>
 
-
-
-
-<figure>
-  <img src="output3.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/output3.png"
+    alt=" " width="500px"><figcaption>
+      <p>Figure 3- Census Blocks within a 15-minute walk of rapid transit, colored by 1940 population</p>
+    </figcaption>
 </figure>
 
-
-
-
-<figure>
-  <img src="output4.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/output4.png"
+    alt=" " width="500px"><figcaption>
+      <p>Figure 4- Census Blocks within a 20-minute walk of rapid transit, colored by 1940 population</p>
+    </figcaption>
 </figure>
 
-
-</p>
 <p>Immediate access to rapid transit in the Stock Yards, Normal Park, and
 Kenwood were all destroyed, and walking times increased by 10-20+ min
 across Bronzeville, even though the line still ran straight through the
@@ -386,20 +388,18 @@ make up a much higher percentage of the blocks whose travel times to
 rapid transit increased. The blocks which were closest to the Stock
 Yards specifically skew these results, as almost the entire (mostly
 White) southwestern side became a transit desert.</p>
-<p>
-<figure>
-  <img src="1940Population.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/1940Population.png"
+    alt=" " width="400px"><figcaption>
+      <p>Figure 5 - Interpolated percentage of non-White residents per Census Block, 1940</p>
+    </figcaption>
 </figure>
 
-
-</p>
-<p>
-<figure>
-  <img src="1940NonWhite2.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/1940NonWhite2.png"
+    alt=" " width="400px"><figcaption>
+      <p>Figure 6 - Interpolated population per Census Block, 1940</p>
+    </figcaption>
 </figure>
 
-
-</p>
 <p>The next hypothesis I examine is whether changes in access to rapid
 transit on the South Side between 1940 and present are correlated with
 race and population changes across the same period. A regression model
@@ -459,13 +459,12 @@ across the South Side. Further station closures on the Green Line have
 made it even more difficult to access the CTA, while the introduction of
 red and orange line service has also improved access for many
 communities, as seen below:</p>
-<p>
-<figure>
-  <img src="CurrentTransitDistances2.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/CurrentTransitDistances2.png"
+    alt=" " width="400px"><figcaption>
+      <p>Figure 7 - Change in walking time to nearest CTA stations between 1940 and 2020</p>
+    </figcaption>
 </figure>
 
-
-</p>
 <p>If the CTA were to address some of the areas where it has become harder
 to access Chicago’s rapid transit system since 1940, a potentially easy
 solution would be to reopen some of the previously closed stations on
@@ -508,13 +507,12 @@ Green Line closure. [29] The next best two stations to re-instate are on
 the Kenwood Branch, at Vincennes and Ellis-Lake Park. With these three
 additional stations over 14,000 people would be newly covered by CTA
 rail.</p>
-<p>
-<figure>
-  <img src="output1.png" alt="alt" />
+<figure><img src="/posts/chi_ss_transit/output1.png"
+    alt=" " width="300px"><figcaption>
+      <p>Figure 8 - Optimal stations for re-instatement of CTA service, as determined through MLCP optimization</p>
+    </figcaption>
 </figure>
 
-
-</p>
 <p>This MLCP analysis shows just how detrimental station closures have been
 on the South Side, and how re-investment in the area could reap massive
 rewards in ridership for CTA.</p>
@@ -609,6 +607,8 @@ Using Floating Catchment Area Methods.” <a href="https://doi.org/10.1016/j.tri
 		</div>
 		<div>
 			<ul>
+				
+				<li><a href="/posts/nfl_cnn/">Measuring and Identifying High-Difficulty NFL Throws with a Convolutional Neural Network with Data from Big Data Bowl </a></li>
 				
 				<li><a href="/posts/chi_ss_transit/">Measuring the Impact of Rapid Transit Station Loss on Chicago&#39;s South Side</a></li>
 				

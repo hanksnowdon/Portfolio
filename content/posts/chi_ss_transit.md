@@ -5,8 +5,7 @@ slug: chi_ss_transit
 type: posts
 draft: false
 summary: 'Graduate spatial data science project on the history of public transit in the South Side.'
-categories:
-  - Transit
+categories: 
   - Transportation
 tags:
   - Chicago
@@ -14,6 +13,8 @@ tags:
   - GIS
 ---
 
+
+{{< figure src="18th02t.jpeg" caption="The 18th Street station of the South Side Elevated, closed August 1, 1949. Courtesy: www.Chicago-L.org" alt=" "   >}}
 
 For the UChicago Spring 2024 GIS Practicum Course I undertook the following research project on the loss of rapid transit access on Chicago's South Side. The course required we analyze an aspect of the 1950s Urban Renewal movement in Chicago, and I decided to research how changes to public transit infrastructure in that era impacted the South Side. What follows is a (slightly) abbrieviated version of that research project. Full code for the analytical methods described is available [here](https://github.com/hanksnowdon/TransitAccessResearch-SouthSideChicago).
 
@@ -143,7 +144,7 @@ areas of the city, with poverty rates skyrocketing in the second half of
 the 20th century.[13] The population has also declined sharply between
 1940 and 2020, as seen in the map of population change by block below:
 
-![alt](PopulationChange.jpeg)
+{{< figure src="PopulationChange.jpeg" caption="Figure 1- Changes in population between 1940 and 2020, Chicago’s South Side" alt=" "  width="400px"  >}}
 
 Within the same period access to rapid transit has decreased sharply in
 the South Side. The Urban Renewal-era branch and station closures were
@@ -272,9 +273,11 @@ population within quick walking distance of the L declined sharply:
 
 These changes are visualized below:
 
-![alt](output2.png)
-![alt](output3.png)
-![alt](output4.png)
+{{< figure src="output2.png" caption="Figure 2- Census Blocks within a 10-minute walk of rapid transit, colored by 1940 population" alt=" "  width="500px"  >}}
+
+{{< figure src="output3.png" caption="Figure 3- Census Blocks within a 15-minute walk of rapid transit, colored by 1940 population" alt=" "  width="500px"  >}}
+
+{{< figure src="output4.png" caption="Figure 4- Census Blocks within a 20-minute walk of rapid transit, colored by 1940 population" alt=" "  width="500px"  >}}
 
 Immediate access to rapid transit in the Stock Yards, Normal Park, and
 Kenwood were all destroyed, and walking times increased by 10-20+ min
@@ -315,9 +318,9 @@ rapid transit increased. The blocks which were closest to the Stock
 Yards specifically skew these results, as almost the entire (mostly
 White) southwestern side became a transit desert.
 
-![alt](1940Population.png)
+{{< figure src="1940Population.png" caption="Figure 5 - Interpolated percentage of non-White residents per Census Block, 1940" alt=" "  width="400px"  >}}
 
-![alt](1940NonWhite2.png)
+{{< figure src="1940NonWhite2.png" caption="Figure 6 - Interpolated population per Census Block, 1940" alt=" "  width="400px"  >}}
 
 The next hypothesis I examine is whether changes in access to rapid
 transit on the South Side between 1940 and present are correlated with
@@ -353,7 +356,7 @@ made it even more difficult to access the CTA, while the introduction of
 red and orange line service has also improved access for many
 communities, as seen below:
 
-![alt](CurrentTransitDistances2.png)
+{{< figure src="CurrentTransitDistances2.png" caption="Figure 7 - Change in walking time to nearest CTA stations between 1940 and 2020" alt=" "  width="400px"  >}}
 
 If the CTA were to address some of the areas where it has become harder
 to access Chicago’s rapid transit system since 1940, a potentially easy
@@ -400,8 +403,7 @@ the Kenwood Branch, at Vincennes and Ellis-Lake Park. With these three
 additional stations over 14,000 people would be newly covered by CTA
 rail.
 
-![alt](output1.png)
-
+{{< figure src="output1.png" caption="Figure 8 - Optimal stations for re-instatement of CTA service, as determined through MLCP optimization" alt=" "  width="300px"  >}}
 
 This MLCP analysis shows just how detrimental station closures have been
 on the South Side, and how re-investment in the area could reap massive
