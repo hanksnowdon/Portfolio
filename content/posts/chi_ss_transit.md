@@ -4,7 +4,7 @@ date: 2024-05-30T19:25:51-05:00
 slug: chi_ss_transit
 type: posts
 draft: false
-summary: 'Spatial data science project on the history of public transit in Chicago.'
+summary: 'Graduate spatial data science research project on the history of Chicago's South Side Elevated Line.'
 categories:
   - Transit
   - Transportation
