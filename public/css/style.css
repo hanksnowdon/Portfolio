@@ -16,6 +16,7 @@ img {display: block; max-width: 100%; height: auto; margin: auto}
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding-bottom: 10px
 }
 
 .bio-text {
@@ -29,4 +30,12 @@ img {display: block; max-width: 100%; height: auto; margin: auto}
 
 .bio-image img {
     max-width: 200px; /* Adjust the size as needed */ 
+}
+
+
+article {
+    padding-top: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px; /* Adjust this value to control spacing */
+    padding-bottom: 10px; /* Adjust this value to control spacing */
 }
