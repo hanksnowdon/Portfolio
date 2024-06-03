@@ -12,19 +12,21 @@ tags:
   - Deep Learning
 ---
 
-{{< figure src="mahomes.jpg" caption="Courtesy: AP Photo-Reed Hoffmann"  >}}
+{{< figure src="mahomes.jpg" caption="Courtesy: AP Photo-Reed Hoffmann" width="600px"  >}}
 
-For the UChicago Spring 2024 Machine Learning and Predictive Analytics Course I completed the following deep learning project, creating a CNN to predict pass completion rates using NFL tracking data from the Big Data Bowl. A write-up can be found below, with the full code available [here](https://github.com/hanksnowdon/NFL_CNN/blob/main/ML_Final_Project.ipynb).
+*For the UChicago Spring 2024 Machine Learning and Predictive Analytics Course I completed the following deep learning project, creating a CNN to predict pass completion rates using NFL tracking data from the Big Data Bowl. This approach largely builds off of the great work done by the [2020 winners of the Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), who used a CNN to predict rushing yards at the time of handoff, and [Jesse Fisher's blog post titled 'PassNet'](https://www.tothemean.com/2021/02/07/nfl-pass-cnn.html) which applied the same framework to offensive data in the 2021 BDB but does not include any code. As far as I know, this project is the first publicly-published code that uses a CNN to predict completion rates.
+
+*A write-up can be found below, with the full code available [here](https://github.com/hanksnowdon/NFL_CNN/blob/main/ML_Final_Project.ipynb).*
 
 ## Introduction - Context and Available Data
 
 In American football, quarterbacks throw the ball to their teammates to gain yards and eventually score touchdowns. Metrics to evaluate the quality of quarterbacks focus on overall results, e.g., touchdowns, passing yards, completion rate, etc. These metrics fail to capture the situational context of each throw, namely, how difficult was it to complete a pass given where the defenders/teammates were positioned at the time of release.
 
-The NFL runs an annual Kaggle contest (the Big Data Bowl) during which they release samples of their rich tracking data to amateur data scientists. The 2023 data contains frame-by-frame information on every player’s location and speed for every camera frame of every pass in Weeks 1-8 of the 2021 NFL season. Each play’s tracking data ends roughly five frames after release.
+The NFL runs an annual Kaggle contest ([the Big Data Bowl](https://operations.nfl.com/gameday/analytics/big-data-bowl/)) during which they release samples of their rich tracking data to amateur data scientists. The 2023 data contains frame-by-frame information on every player’s location and speed for every camera frame of every pass in Weeks 1-8 of the 2021 NFL season. The contest prompt was focused on offensive line performance, and as such, each play’s tracking data ends roughly five frames after release.
 
 ## Problem Statement and Goal of Analysis
 
-For each throw in the dataset, I want to measure how difficult each throw is, and determine which quarterbacks completed the most challenging throws. To do this I will utilize a convolutional neural network to determine the probability of completion of a pass at the time of each throw, and use these probabilities and actual outcomes to identify the most difficult completions that were converted in the test data. This approach largely builds off of the great work done by the [2020 winners of the Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), who used a CNN to predict rushing yards at the time of handoff with incredible accuracy.
+For each throw in the dataset, I want to measure how difficult each throw is, ultimately to create a framework to determine which quarterbacks completed the most challenging throws. To do this I will utilize a convolutional neural network to determine the probability of completion of a pass at the time of each pass's release, and use these probabilities and actual outcomes to identify the most difficult completions that were converted in the test data. 
 
 ## Data and Model Assumptions
 
@@ -63,7 +65,7 @@ First, I need to limit each play to the “time of throw.”
 
 - I do this by filtering down to the second frame after ball release. This allows the model to learn which direction the ball is being thrown in (so it knows who the intended pass-catcher is).
 
-Then, following a similar framework of the [first-place finish in the 2020 Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), I construct the following ten vector features. These vectors effectively provide a “snapshot” of player movements and positions for a CNN kernel to scan over and detect patterns.
+Then, following the modeling framework used in the work [mentioned](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400) [above]((https://www.tothemean.com/2021/02/07/nfl-pass-cnn.html)), I construct the following ten vector features. These vectors effectively provide a “snapshot” of player movements and positions for a CNN kernel to scan over and detect patterns.
 
 - Offensive player positions relative to football
 - Offense position (x, y) – football position (x, y)
@@ -82,10 +84,7 @@ I also translate every frame to augment the data.
 
 ## Initial Modeling Approach
 
-I again follow a similar CNN architecture framework to the model [mentioned previously](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), but with the following changes:
-
-- I focus on offensive players as the key input, not defensive players.
-- I predict the binary outcome of a completed pass instead of continuous yards gained.
+My CNN inputs the 4-dimensional data outlined above (play, offensive players, defensive players, measures) to predict the binary outcome of a pass being completed.
 
 The model architecture has two blocks of convolutional layers to learn patterns corresponding to players’ relative positions and speeds to the other team and the ball:
 
@@ -101,7 +100,7 @@ I use pass plays from weeks 1-6 of the 2021 season as my training data and imple
 
 ## Initial Approach – Checking for Over/Underfitting
 
-On the initial run, the model shows some serious signs of overfitting. Both the training and validation metrics improve until about epoch 15, but then the training metrics continue improving while the validation metrics decline.
+On the initial run, the model shows some serious signs of overfitting. Both the training and validation metrics improve until about epoch 10, but then the training metrics continue improving while the validation metrics decline.
 
 I care especially about loss here – log loss penalizes the widely mis-fit probabilities of the model predictions, and since my application is more concerned with the probabilities than completion predictions, I want to monitor the loss function closely.
 
@@ -109,7 +108,7 @@ I care especially about loss here – log loss penalizes the widely mis-fit prob
 
 {{< figure src="acc1.png"  alt=" " width="500px"  >}}
 
-## Proposed Solution (Model Selection) w reg
+## Proposed Solution (Model Selection) w Regularization
 
 I eventually settle on a final model (by lowest avg loss score via 3-fold CV) that implements the following regularization techniques to discourage overfitting:
 
