@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Deep Learning on Hank Snowdon</title>
-    <link>https://example.org/tags/deep-learning/</link>
+    <link>/tags/deep-learning/</link>
     <description>Recent content in Deep Learning on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 31 May 2024 15:36:54 -0500</lastBuildDate>
-    <atom:link href="https://example.org/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring and Identifying High-Difficulty NFL Throws with a Convolutional Neural Network with Data from Big Data Bowl </title>
-      <link>https://example.org/posts/nfl_cnn/</link>
+      <link>/posts/nfl_cnn/</link>
       <pubDate>Fri, 31 May 2024 15:36:54 -0500</pubDate>
-      <guid>https://example.org/posts/nfl_cnn/</guid>
+      <guid>/posts/nfl_cnn/</guid>
       <description>Graduate deep learning project, using a convolutional neural network to predict NFL completion percentages at the time of throw.</description>
     </item>
   </channel>

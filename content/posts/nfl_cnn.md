@@ -12,37 +12,26 @@ tags:
   - Deep Learning
 ---
 
+{{< figure src="mahomes.jpg" caption="Courtesy: AP Photo-Reed Hoffmann"  >}}
+
 For the UChicago Spring 2024 Machine Learning and Predictive Analytics Course I completed the following deep learning project, creating a CNN to predict pass completion rates using NFL tracking data from the Big Data Bowl. A write-up can be found below, with the full code available [here](https://github.com/hanksnowdon/NFL_CNN/blob/main/ML_Final_Project.ipynb).
 
-## Introduction
+## Introduction - Context and Available Data
 
-### Context
+In American football, quarterbacks throw the ball to their teammates to gain yards and eventually score touchdowns. Metrics to evaluate the quality of quarterbacks focus on overall results, e.g., touchdowns, passing yards, completion rate, etc. These metrics fail to capture the situational context of each throw, namely, how difficult was it to complete a pass given where the defenders/teammates were positioned at the time of release.
 
-In American football, quarterbacks throw the ball to their teammates to gain yards and eventually score touchdowns. Metrics to evaluate the quality of quarterbacks focus on overall results, e.g., touchdowns, passing yards, completion rate, etc.
-
-These metrics fail to capture the situational context of each throw, namely, how difficult was it to complete a pass given where the defenders/teammates were positioned at the time of release.
-
-### Data Available
-
-The NFL runs an annual Kaggle contest (the Big Data Bowl) during which they release samples of their rich tracking data to amateur data scientists.
-
-The 2023 data contains frame-by-frame information on every player’s location and speed for every camera frame of every pass in Weeks 1-8 of the 2021 NFL season. Each play’s tracking data ends roughly five frames after release.
+The NFL runs an annual Kaggle contest (the Big Data Bowl) during which they release samples of their rich tracking data to amateur data scientists. The 2023 data contains frame-by-frame information on every player’s location and speed for every camera frame of every pass in Weeks 1-8 of the 2021 NFL season. Each play’s tracking data ends roughly five frames after release.
 
 ## Problem Statement and Goal of Analysis
 
-For each throw in the dataset, I want to measure how difficult each throw is, and determine which quarterbacks completed the most challenging throws. To do this I will utilize a convolutional neural network to determine the probability of completion of a pass at the time of each throw, and use these probabilities and actual outcomes to identify the most difficult completions that were converted in the test data.
+For each throw in the dataset, I want to measure how difficult each throw is, and determine which quarterbacks completed the most challenging throws. To do this I will utilize a convolutional neural network to determine the probability of completion of a pass at the time of each throw, and use these probabilities and actual outcomes to identify the most difficult completions that were converted in the test data. This approach largely builds off of the great work done by the [2020 winners of the Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), who used a CNN to predict rushing yards at the time of handoff with incredible accuracy.
 
 ## Data and Model Assumptions
 
-### Assumptions 
+### Assumptions
 
-Assumption 1:
-
-Spatial relationships between offense/defense/the ball are what drive pass completion success. By training a CNN on the positions/speeds of the players and ball involved in each play, I am assuming that the success of a pass attempt is driven by where the actors are on the field in relation to each other. This is a safe assumption: a pass is more likely to be completed if there are fewer defenders near the thrower and catcher, and more likely if the ball is moving in the direction of the receiver. I can train a kernel to scan over every player per play, detecting patterns in how their speed and position relate to the ball and other players around them, to learn which patterns drive high completion probabilities.
-
-Assumption 2:
-
-Patterns in the data are the same no matter where they occur in the sample space. Due to parameter sharing, CNNs assume that patterns in the training set have the same impact on the target variable regardless of their location. In my context, this means that distances between certain players and others will all be treated the same. Again, this is a safe assumption. It does not intuitively matter which player is moving at which speed/direction when considering completion probability.
+- Spatial relationships between offense/defense/the ball are what drive pass completion success. By training a CNN on the positions/speeds of the players and ball involved in each play, I am assuming that the success of a pass attempt is driven by where the actors are on the field in relation to each other. This is a safe assumption: a pass is more likely to be completed if there are fewer defenders near the thrower and catcher, and more likely if the ball is moving in the direction of the receiver. I can train a kernel to scan over every player per play, detecting patterns in how their speed and position relate to the ball and other players around them, to learn which patterns drive high completion probabilities.
+- Patterns in the data are the same no matter where they occur in the sample space. Due to parameter sharing, CNNs assume that patterns in the training set have the same impact on the target variable regardless of their location. In my context, this means that distances between certain players and others will all be treated the same. Again, this is a safe assumption. It does not intuitively matter which player is moving at which speed/direction when considering completion probability.
 
 ### Hypothesis
 
@@ -50,11 +39,11 @@ The main hypothesis of this approach is that a CNN, typically used for image ana
 
 ### Limitations
 
-High accuracy/low loss will be difficult with this model. Given the nature of the problem, most pass attempts have a high amount of uncertainty when the ball is released from the QB’s hand. It will be thus be difficult to achieve overwhelmingly accuracy.
+- High accuracy/low loss will be difficult with this model. Given the nature of the problem, most pass attempts have a high amount of uncertainty when the ball is released from the QB’s hand. It will be thus be difficult to achieve overwhelmingly accuracy.
 
-The dataset is also somewhat limited in size – only ~6900 pass attempts. This is going to make it challenging for the CNN to learn only from the movement/positional patterns to recognize open receivers, and not just learn the noise of each play’s result.
+- The dataset is also somewhat limited in size – only ~6900 pass attempts. This is going to make it challenging for the CNN to learn only from the movement/positional patterns to recognize open receivers, and not just learn the noise of each play’s result.
 
-My model also doesn’t address “eligible/ineligible” receivers -  not every player on the field is allowed to catch a pass by NFL rules.I hope the CNN will recognize that players close to the quarterback are rarely thrown to, and if the ball is on a trajectory toward them at release that it will go past them to a receiver.
+- My model also doesn’t address “eligible/ineligible” receivers -  not every player on the field is allowed to catch a pass by NFL rules.I hope the CNN will recognize that players close to the quarterback are rarely thrown to, and if the ball is on a trajectory toward them at release that it will go past them to a receiver.
 
 ## Exploratory Data Analysis  
 
@@ -62,7 +51,7 @@ After removing penalties, sacks, and QB runs from the data, slightly over half o
 
 {{< figure src="eda.png"  alt=" " width="500px"  >}}
 
-The data for each play can also be visualized as seen here:
+The data for each play can also be visualized as seen here (vizualization code taken from this awesome [plotting function](https://www.kaggle.com/code/huntingdata11/animated-and-interactive-nfl-plays-in-plotly/notebook) created by Hunter Kempf):
 
 {{< video src="vid1.mov" width="640" >}}
 
@@ -74,7 +63,7 @@ First, I need to limit each play to the “time of throw.”
 
 - I do this by filtering down to the second frame after ball release. This allows the model to learn which direction the ball is being thrown in (so it knows who the intended pass-catcher is).
 
-Then, following a similar framework of the first-place finish in the 2020 Big Data Bowl, I construct the following ten vector features. These vectors effectively provide a “snapshot” of player movements and positions for a CNN kernel to scan over and detect patterns.
+Then, following a similar framework of the [first-place finish in the 2020 Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), I construct the following ten vector features. These vectors effectively provide a “snapshot” of player movements and positions for a CNN kernel to scan over and detect patterns.
 
 - Offensive player positions relative to football
 - Offense position (x, y) – football position (x, y)

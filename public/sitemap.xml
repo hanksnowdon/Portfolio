@@ -2,58 +2,58 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://example.org/categories/</loc>
+    <loc>/categories/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/deep-learning/</loc>
+    <loc>/tags/deep-learning/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/</loc>
+    <loc>/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/nfl_cnn/</loc>
+    <loc>/posts/nfl_cnn/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/nfl/</loc>
+    <loc>/tags/nfl/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/</loc>
+    <loc>/posts/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/categories/sports/</loc>
+    <loc>/categories/sports/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/</loc>
+    <loc>/tags/</loc>
     <lastmod>2024-05-31T15:36:54-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/chicago/</loc>
+    <loc>/tags/chicago/</loc>
     <lastmod>2024-05-30T19:25:51-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/gis/</loc>
+    <loc>/tags/gis/</loc>
     <lastmod>2024-05-30T19:25:51-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/chi_ss_transit/</loc>
+    <loc>/posts/chi_ss_transit/</loc>
     <lastmod>2024-05-30T19:25:51-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/transit/</loc>
+    <loc>/tags/transit/</loc>
     <lastmod>2024-05-30T19:25:51-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/categories/transportation/</loc>
+    <loc>/categories/transportation/</loc>
     <lastmod>2024-05-30T19:25:51-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/fantasy-baseball/</loc>
+    <loc>/tags/fantasy-baseball/</loc>
     <lastmod>2024-03-19T16:48:05-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/roto-optimization/</loc>
+    <loc>/posts/roto-optimization/</loc>
     <lastmod>2024-03-19T16:48:05-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/sports/</loc>
+    <loc>/tags/sports/</loc>
     <lastmod>2024-03-19T16:48:05-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/tags/baseball/</loc>
+    <loc>/tags/baseball/</loc>
     <lastmod>2024-03-18T16:48:05-05:00</lastmod>
   </url><url>
-    <loc>https://example.org/posts/umpire-discrimination-thesis/</loc>
+    <loc>/posts/umpire-discrimination-thesis/</loc>
     <lastmod>2024-03-18T16:48:05-05:00</lastmod>
   </url>
 </urlset>
