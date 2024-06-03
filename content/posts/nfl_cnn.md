@@ -1,5 +1,5 @@
 ---
-title: "Measuring and Identifying High-Difficulty NFL Throws with a Convolutional Neural Network with Data from Big Data Bowl "
+title: "Big Data Bowl - Using a Convolutional Neural Network to Identify High-Difficulty NFL Throws"
 date: 2024-05-31T15:36:54-05:00
 slug: nfl_cnn
 type: posts
@@ -14,7 +14,7 @@ tags:
 
 {{< figure src="mahomes.jpg" caption="Courtesy: AP Photo-Reed Hoffmann" width="600px"  >}}
 
-*For the UChicago Spring 2024 Machine Learning and Predictive Analytics Course I completed the following deep learning project, creating a CNN to predict pass completion rates using NFL tracking data from the Big Data Bowl. This approach largely builds off of the great work done by the [2020 winners of the Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), who used a CNN to predict rushing yards at the time of handoff, and [Jesse Fisher's blog post titled 'PassNet'](https://www.tothemean.com/2021/02/07/nfl-pass-cnn.html) which applied the same framework to offensive data in the 2021 BDB but does not include any code. As far as I know, this project is the first publicly-published code that uses a CNN to predict completion rates.
+*For the UChicago Spring 2024 Machine Learning and Predictive Analytics Course I completed the following deep learning project, creating a CNN to predict pass completion rates using NFL tracking data from the Big Data Bowl. This approach largely builds off of the great work done by the [2020 winners of the Big Data Bowl](https://www.kaggle.com/competitions/nfl-big-data-bowl-2020/discussion/119400), who used a CNN to predict rushing yards at the time of handoff, and [Jesse Fisher's blog post titled 'PassNet'](https://www.tothemean.com/2021/02/07/nfl-pass-cnn.html) which applied the same framework to offensive data in the 2021 BDB but does not include any code. As far as I know, this project is the first publicly-published code that uses a CNN to predict completion rates.*
 
 *A write-up can be found below, with the full code available [here](https://github.com/hanksnowdon/NFL_CNN/blob/main/ML_Final_Project.ipynb).*
 

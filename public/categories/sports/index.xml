@@ -9,7 +9,7 @@
     <lastBuildDate>Fri, 31 May 2024 15:36:54 -0500</lastBuildDate>
     <atom:link href="/categories/sports/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Measuring and Identifying High-Difficulty NFL Throws with a Convolutional Neural Network with Data from Big Data Bowl </title>
+      <title>Big Data Bowl - Using a Convolutional Neural Network to Identify High-Difficulty NFL Throws</title>
       <link>/posts/nfl_cnn/</link>
       <pubDate>Fri, 31 May 2024 15:36:54 -0500</pubDate>
       <guid>/posts/nfl_cnn/</guid>
