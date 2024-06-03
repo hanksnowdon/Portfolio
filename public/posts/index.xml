@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Hank Snowdon</title>
-    <link>//localhost:1313/posts/</link>
+    <link>/posts/</link>
     <description>Recent content in Posts on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 31 May 2024 15:36:54 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring and Identifying High-Difficulty NFL Throws with a Convolutional Neural Network with Data from Big Data Bowl </title>
-      <link>//localhost:1313/posts/nfl_cnn/</link>
+      <link>/posts/nfl_cnn/</link>
       <pubDate>Fri, 31 May 2024 15:36:54 -0500</pubDate>
-      <guid>//localhost:1313/posts/nfl_cnn/</guid>
+      <guid>/posts/nfl_cnn/</guid>
       <description>Graduate deep learning project, using a convolutional neural network to predict NFL completion percentages at the time of throw.</description>
     </item>
     <item>
       <title>Measuring the Impact of Rapid Transit Station Loss on Chicago&#39;s South Side</title>
-      <link>//localhost:1313/posts/chi_ss_transit/</link>
+      <link>/posts/chi_ss_transit/</link>
       <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
-      <guid>//localhost:1313/posts/chi_ss_transit/</guid>
+      <guid>/posts/chi_ss_transit/</guid>
       <description>Graduate spatial data science project on the history of public transit in the South Side.</description>
     </item>
     <item>
       <title>Fantasy Baseball Roto Draft Optimization</title>
-      <link>//localhost:1313/posts/roto-optimization/</link>
+      <link>/posts/roto-optimization/</link>
       <pubDate>Tue, 19 Mar 2024 16:48:05 -0500</pubDate>
-      <guid>//localhost:1313/posts/roto-optimization/</guid>
+      <guid>/posts/roto-optimization/</guid>
       <description>Using integer programming to select an optimal fantasy baseball roster.</description>
     </item>
     <item>
       <title>MLB Umpire Discrimination Research</title>
-      <link>//localhost:1313/posts/umpire-discrimination-thesis/</link>
+      <link>/posts/umpire-discrimination-thesis/</link>
       <pubDate>Mon, 18 Mar 2024 16:48:05 -0500</pubDate>
-      <guid>//localhost:1313/posts/umpire-discrimination-thesis/</guid>
+      <guid>/posts/umpire-discrimination-thesis/</guid>
       <description>Award-winning senior undergraduate thesis on umpire discrimination.</description>
     </item>
   </channel>
