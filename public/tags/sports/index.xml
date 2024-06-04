@@ -2,24 +2,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Sports on Hank Snowdon</title>
-    <link>//localhost:1313/tags/sports/</link>
+    <link>/tags/sports/</link>
     <description>Recent content in Sports on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 19 Mar 2024 16:48:05 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/sports/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/sports/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fantasy Baseball Roto Draft Optimization</title>
-      <link>//localhost:1313/posts/roto-optimization/</link>
+      <link>/posts/roto-optimization/</link>
       <pubDate>Tue, 19 Mar 2024 16:48:05 -0500</pubDate>
-      <guid>//localhost:1313/posts/roto-optimization/</guid>
+      <guid>/posts/roto-optimization/</guid>
       <description>Using integer programming to select an optimal fantasy baseball roster.</description>
     </item>
     <item>
       <title>MLB Umpire Discrimination Research</title>
-      <link>//localhost:1313/posts/umpire-discrimination-thesis/</link>
+      <link>/posts/umpire-discrimination-thesis/</link>
       <pubDate>Mon, 31 May 2021 16:48:05 -0500</pubDate>
-      <guid>//localhost:1313/posts/umpire-discrimination-thesis/</guid>
+      <guid>/posts/umpire-discrimination-thesis/</guid>
       <description>Award-winning senior undergraduate thesis on umpire discrimination.</description>
     </item>
   </channel>

@@ -16,7 +16,7 @@ tags:
 
 {{< figure src="18th02t.jpeg" caption="The 18th Street station of the South Side Elevated, closed August 1, 1949. Courtesy: www.Chicago-L.org" alt=" "   >}}
 
-For the UChicago Spring 2024 GIS Practicum Course I undertook the following research project on the loss of rapid transit access on Chicago's South Side. The course required we analyze an aspect of the 1950s Urban Renewal movement in Chicago, and I decided to research how changes to public transit infrastructure in that era impacted the South Side. What follows is a (slightly) abbrieviated version of that research project. Full code for the analytical methods described is available [here](https://github.com/hanksnowdon/TransitAccessResearch-SouthSideChicago).
+*For the UChicago Spring 2024 GIS Practicum Course I undertook the following research project on the loss of rapid transit access on Chicago's South Side. The course required we analyze an aspect of the 1950s Urban Renewal movement in Chicago, and I decided to research how changes to public transit infrastructure in that era impacted the South Side. What follows is a (slightly) abbrieviated version of that research project. Full code for the analytical methods described is available [here](https://github.com/hanksnowdon/TransitAccessResearch-SouthSideChicago).*
 
 # Introduction
 

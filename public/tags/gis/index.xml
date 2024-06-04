@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>GIS on Hank Snowdon</title>
-    <link>//localhost:1313/tags/gis/</link>
+    <link>/tags/gis/</link>
     <description>Recent content in GIS on Hank Snowdon</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 30 May 2024 19:25:51 -0500</lastBuildDate>
-    <atom:link href="//localhost:1313/tags/gis/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="/tags/gis/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Measuring the Impact of Rapid Transit Station Loss on Chicago&#39;s South Side</title>
-      <link>//localhost:1313/posts/chi_ss_transit/</link>
+      <link>/posts/chi_ss_transit/</link>
       <pubDate>Thu, 30 May 2024 19:25:51 -0500</pubDate>
-      <guid>//localhost:1313/posts/chi_ss_transit/</guid>
+      <guid>/posts/chi_ss_transit/</guid>
       <description>Graduate spatial data science project on the history of public transit in the South Side.</description>
     </item>
   </channel>
