@@ -144,7 +144,7 @@ areas of the city, with poverty rates skyrocketing in the second half of
 the 20th century.[13] The population has also declined sharply between
 1940 and 2020, as seen in the map of population change by block below:
 
-{{< figure src="PopulationChange.jpeg" caption="Figure 1- Changes in population between 1940 and 2020, Chicago’s South Side" alt=" "  width="400px"  >}}
+{{< figure src="Pop Change.png" caption="Figure 1- Changes in population between 1940 and 2020, Chicago’s South Side" alt=" "  width="600px"  >}}
 
 Within the same period access to rapid transit has decreased sharply in
 the South Side. The Urban Renewal-era branch and station closures were
@@ -318,9 +318,9 @@ rapid transit increased. The blocks which were closest to the Stock
 Yards specifically skew these results, as almost the entire (mostly
 White) southwestern side became a transit desert.
 
-{{< figure src="1940Population.png" caption="Figure 5 - Interpolated percentage of non-White residents per Census Block, 1940" alt=" "  width="400px"  >}}
+{{< figure src="1940 Population New.png" caption="Figure 5 - Interpolated population per Census Block, 1940" alt=" "  width="600px"  >}}
 
-{{< figure src="1940NonWhite2.png" caption="Figure 6 - Interpolated population per Census Block, 1940" alt=" "  width="400px"  >}}
+{{< figure src="1940 NonWhite3.png" caption="Figure 6 - Interpolated percentage of non-White residents per Census Block, 1940" alt=" "  width="600px"  >}}
 
 The next hypothesis I examine is whether changes in access to rapid
 transit on the South Side between 1940 and present are correlated with
@@ -356,7 +356,7 @@ made it even more difficult to access the CTA, while the introduction of
 red and orange line service has also improved access for many
 communities, as seen below:
 
-{{< figure src="CurrentTransitDistances2.png" caption="Figure 7 - Change in walking time to nearest CTA stations between 1940 and 2020" alt=" "  width="400px"  >}}
+{{< figure src="Current Transit Distances3.png" caption="Figure 7 - Change in walking time to nearest CTA stations between 1940 and 2020" alt=" "  width="600px"  >}}
 
 If the CTA were to address some of the areas where it has become harder
 to access Chicago’s rapid transit system since 1940, a potentially easy
@@ -403,7 +403,7 @@ the Kenwood Branch, at Vincennes and Ellis-Lake Park. With these three
 additional stations over 14,000 people would be newly covered by CTA
 rail.
 
-{{< figure src="output1.png" caption="Figure 8 - Optimal stations for re-instatement of CTA service, as determined through MLCP optimization" alt=" "  width="300px"  >}}
+{{< figure src="output1.png" caption="Figure 8 - Optimal stations for re-instatement of CTA service, as determined through MLCP optimization" alt=" "  width="450px"  >}}
 
 This MLCP analysis shows just how detrimental station closures have been
 on the South Side, and how re-investment in the area could reap massive
