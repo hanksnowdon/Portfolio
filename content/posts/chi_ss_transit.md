@@ -1,10 +1,10 @@
 ---
-title: "Measuring the Impact of Rapid Transit Station Loss on Chicago's South Side"
+title: "Quantifying the Loss of Rapid Transit on Chicago's South Side"
 date: 2024-05-30T19:25:51-05:00
 slug: chi_ss_transit
 type: posts
 draft: false
-summary: 'Graduate spatial data science project on the history of public transit in the South Side.'
+summary: 'Applying spatial data science methods to study the history of South Side public transit.'
 categories: 
   - Transportation
 tags:

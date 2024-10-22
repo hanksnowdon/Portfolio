@@ -1,10 +1,10 @@
 ---
-title: "Big Data Bowl - Using a Convolutional Neural Network to Identify High-Difficulty NFL Throws"
+title: "Big Data Bowl - Identifying Difficult Passes with Deep Learning"
 date: 2024-05-31T15:36:54-05:00
 slug: nfl_cnn
 type: posts
 draft: false
-summary: 'Graduate deep learning project, using a convolutional neural network to predict NFL completion percentages at the time of throw.'
+summary: 'Using a CNN to predict NFL completion percentages at the time of throw for a grad school deep learning project.'
 categories:
   - Sports
 tags:

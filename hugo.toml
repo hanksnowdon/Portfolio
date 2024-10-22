@@ -24,14 +24,16 @@ enableEmoji = 'true'
         weight = 2 
 
 # Footer
+
+  [[menu.footer]]
+      name = "LinkedIn"
+      url = "https://www.linkedin.com/in/hank-snowdon-849588159/"
+      weight = 1
   [[menu.footer]]
         name = "Github"
         url = "https://github.com/hanksnowdon"
-        weight = 1 
-
-    [[menu.footer]]
-        name = "Twitter"
-        url = "https://twitter.com/hsnowdon5"
         weight = 2 
+
+
 
 

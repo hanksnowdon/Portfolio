@@ -9,7 +9,7 @@
     <lastBuildDate>Fri, 31 May 2024 15:36:54 -0500</lastBuildDate>
     <atom:link href="//localhost:1313/tags/deep-learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Big Data Bowl - Using a Convolutional Neural Network to Identify High-Difficulty NFL Throws</title>
+      <title>Big Data Bowl - Identifying Difficult Passes with Deep Learning</title>
       <link>//localhost:1313/posts/nfl_cnn/</link>
       <pubDate>Fri, 31 May 2024 15:36:54 -0500</pubDate>
       <guid>//localhost:1313/posts/nfl_cnn/</guid>
