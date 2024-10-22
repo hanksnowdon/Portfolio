@@ -13,7 +13,7 @@
       <link>//localhost:1313/posts/nfl_cnn/</link>
       <pubDate>Fri, 31 May 2024 15:36:54 -0500</pubDate>
       <guid>//localhost:1313/posts/nfl_cnn/</guid>
-      <description>Graduate deep learning project, using a convolutional neural network to predict NFL completion percentages at the time of throw.</description>
+      <description>Using a CNN to predict NFL completion percentages at the time of throw for a grad school deep learning project.</description>
     </item>
   </channel>
 </rss>
